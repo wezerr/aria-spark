@@ -1,4 +1,5 @@
 import { Sparkles, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function HeroSection() {
   return (
@@ -29,9 +30,9 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-4 bg-white text-[hsl(250,70%,62%)] rounded-lg font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-white/95">
+              <Link to="/auth" className="px-8 py-4 bg-white text-[hsl(250,70%,62%)] rounded-lg font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-white/95 text-center">
                 Создать резюме
-              </button>
+              </Link>
               <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-lg font-semibold text-lg hover:bg-white/20 transition-all duration-300">
                 Посмотреть примеры
               </button>
