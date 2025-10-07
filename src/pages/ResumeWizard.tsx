@@ -44,6 +44,7 @@ const TOTAL_STEPS = 7;
 const ResumeWizard = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [wizardData, setWizardData] = useState<WizardData>({
     step1: {
@@ -127,12 +128,14 @@ const ResumeWizard = () => {
         navigate("/resume/editor/new");
       }, 2000);
     } else {
+      setDirection("forward");
       setCurrentStep(currentStep + 1);
     }
   };
 
   const handleBack = () => {
     if (currentStep > 1) {
+      setDirection("backward");
       setCurrentStep(currentStep - 1);
     }
   };
@@ -141,6 +144,7 @@ const ResumeWizard = () => {
     if (!completedSteps.includes(currentStep)) {
       setCompletedSteps([...completedSteps, currentStep]);
     }
+    setDirection("forward");
     setCurrentStep(currentStep + 1);
   };
 
@@ -264,6 +268,7 @@ const ResumeWizard = () => {
       onSkip={config.canSkip ? handleSkip : undefined}
       title={config.title}
       description={config.description}
+      direction={direction}
     >
       {renderStep()}
     </WizardLayout>
