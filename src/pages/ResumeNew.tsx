@@ -18,7 +18,7 @@ const ResumeNew = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="p-6 hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
-              <Link to="/resume/editor/new?mode=ai" className="block text-center">
+              <Link to="/resume/wizard" className="block text-center">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Bot className="w-8 h-8 text-primary" />
                 </div>
