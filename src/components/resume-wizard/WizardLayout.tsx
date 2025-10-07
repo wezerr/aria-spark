@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -29,8 +28,6 @@ const WizardLayout = ({
   title,
   description,
 }: WizardLayoutProps) => {
-  const progress = (currentStep / totalSteps) * 100;
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Header */}
@@ -44,7 +41,19 @@ const WizardLayout = ({
               Шаг {currentStep} из {totalSteps}
             </span>
           </div>
-          <Progress value={progress} className="h-2" />
+          {/* Custom Progress Bar with Dashes */}
+          <div className="flex gap-2 items-center justify-center">
+            {Array.from({ length: totalSteps }).map((_, index) => (
+              <div
+                key={index}
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  index < currentStep
+                    ? "w-12 bg-primary"
+                    : "w-12 bg-muted"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -58,8 +67,10 @@ const WizardLayout = ({
             )}
           </div>
 
-          <div className="bg-background rounded-lg shadow-lg p-8 mb-6">
-            {children}
+          <div className="bg-background rounded-lg shadow-lg p-8 mb-6 animate-fade-in">
+            <div key={currentStep} className="animate-scale-in">
+              {children}
+            </div>
           </div>
 
           {/* Navigation */}
