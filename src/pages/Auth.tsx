@@ -5,16 +5,18 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sparkles, Mail, Lock, User, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Auth = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [registerData, setRegisterData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success("Вход выполнен успешно!");
+    navigate("/dashboard");
   };
 
   const handleRegister = (e: React.FormEvent) => {
@@ -24,6 +26,7 @@ const Auth = () => {
       return;
     }
     toast.success("Регистрация прошла успешно!");
+    navigate("/dashboard");
   };
 
   return (
