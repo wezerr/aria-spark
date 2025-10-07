@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import MonthYearPicker from "@/components/ui/month-year-picker";
 
 interface WorkEntry {
   id: string;
@@ -101,21 +102,19 @@ const Step3WorkHistory = ({ data, onChange }: Step3WorkHistoryProps) => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor={`dateFrom-${entry.id}`}>Период работы: с *</Label>
-              <Input
-                id={`dateFrom-${entry.id}`}
-                type="month"
+              <MonthYearPicker
                 value={entry.dateFrom}
-                onChange={(e) => updateEntry(entry.id, "dateFrom", e.target.value)}
+                onChange={(value) => updateEntry(entry.id, "dateFrom", value)}
+                placeholder="Месяц и год"
               />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor={`dateTo-${entry.id}`}>по *</Label>
-              <Input
-                id={`dateTo-${entry.id}`}
-                type="month"
+              <MonthYearPicker
                 value={entry.dateTo}
-                onChange={(e) => updateEntry(entry.id, "dateTo", e.target.value)}
+                onChange={(value) => updateEntry(entry.id, "dateTo", value)}
+                placeholder="Месяц и год"
                 disabled={entry.currentlyWorking}
               />
             </div>
