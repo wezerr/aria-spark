@@ -20,11 +20,17 @@ interface WizardData {
   };
   step2: {
     position: string;
-    yearsOfExperience: string;
     description: string;
   };
   step3: {
-    workHistory: Array<{ id: string; company: string; position: string }>;
+    workHistory: Array<{ 
+      id: string; 
+      company: string; 
+      position: string;
+      dateFrom: string;
+      dateTo: string;
+      currentlyWorking: boolean;
+    }>;
   };
   step4: {
     institution: string;
@@ -56,11 +62,17 @@ const ResumeWizard = () => {
     },
     step2: {
       position: "",
-      yearsOfExperience: "",
       description: "",
     },
     step3: {
-      workHistory: [{ id: "1", company: "", position: "" }],
+      workHistory: [{ 
+        id: "1", 
+        company: "", 
+        position: "",
+        dateFrom: "",
+        dateTo: "",
+        currentlyWorking: false
+      }],
     },
     step4: {
       institution: "",
@@ -87,12 +99,16 @@ const ResumeWizard = () => {
       case 2:
         return !!(
           wizardData.step2.position &&
-          wizardData.step2.yearsOfExperience &&
           wizardData.step2.description
         );
       case 3:
         return wizardData.step3.workHistory.every(
-          (entry) => entry.company && entry.position
+          (entry) => {
+            if (entry.currentlyWorking) {
+              return entry.company && entry.position && entry.dateFrom;
+            }
+            return entry.company && entry.position && entry.dateFrom && entry.dateTo;
+          }
         );
       case 4:
         return !!(

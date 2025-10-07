@@ -2,11 +2,15 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface WorkEntry {
   id: string;
   company: string;
   position: string;
+  dateFrom: string;
+  dateTo: string;
+  currentlyWorking: boolean;
 }
 
 interface Step3Data {
@@ -23,7 +27,14 @@ const Step3WorkHistory = ({ data, onChange }: Step3WorkHistoryProps) => {
     onChange({
       workHistory: [
         ...data.workHistory,
-        { id: Date.now().toString(), company: "", position: "" },
+        { 
+          id: Date.now().toString(), 
+          company: "", 
+          position: "",
+          dateFrom: "",
+          dateTo: "",
+          currentlyWorking: false
+        },
       ],
     });
   };
@@ -34,7 +45,11 @@ const Step3WorkHistory = ({ data, onChange }: Step3WorkHistoryProps) => {
     });
   };
 
-  const updateEntry = (id: string, field: "company" | "position", value: string) => {
+  const updateEntry = (
+    id: string, 
+    field: "company" | "position" | "dateFrom" | "dateTo" | "currentlyWorking", 
+    value: string | boolean
+  ) => {
     onChange({
       workHistory: data.workHistory.map((entry) =>
         entry.id === id ? { ...entry, [field]: value } : entry
@@ -45,7 +60,7 @@ const Step3WorkHistory = ({ data, onChange }: Step3WorkHistoryProps) => {
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted-foreground">
-        Укажите компании где вы работали. Детали можно будет добавить позже.
+        Укажите места работы и период занятости
       </p>
 
       {data.workHistory.map((entry, index) => (
@@ -81,6 +96,45 @@ const Step3WorkHistory = ({ data, onChange }: Step3WorkHistoryProps) => {
               onChange={(e) => updateEntry(entry.id, "position", e.target.value)}
               placeholder="Frontend Developer"
             />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor={`dateFrom-${entry.id}`}>Период работы: с *</Label>
+              <Input
+                id={`dateFrom-${entry.id}`}
+                type="month"
+                value={entry.dateFrom}
+                onChange={(e) => updateEntry(entry.id, "dateFrom", e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor={`dateTo-${entry.id}`}>по *</Label>
+              <Input
+                id={`dateTo-${entry.id}`}
+                type="month"
+                value={entry.dateTo}
+                onChange={(e) => updateEntry(entry.id, "dateTo", e.target.value)}
+                disabled={entry.currentlyWorking}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id={`current-${entry.id}`}
+              checked={entry.currentlyWorking}
+              onCheckedChange={(checked) => 
+                updateEntry(entry.id, "currentlyWorking", checked as boolean)
+              }
+            />
+            <Label 
+              htmlFor={`current-${entry.id}`}
+              className="text-sm font-normal cursor-pointer"
+            >
+              Работаю здесь в настоящее время
+            </Label>
           </div>
         </div>
       ))}
