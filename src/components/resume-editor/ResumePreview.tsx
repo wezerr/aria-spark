@@ -6,15 +6,16 @@ import { useState } from "react";
 interface ResumePreviewProps {
   data: any;
   template: string;
+  fullScreen?: boolean;
 }
 
-const ResumePreview = ({ data, template }: ResumePreviewProps) => {
+const ResumePreview = ({ data, template, fullScreen = false }: ResumePreviewProps) => {
   const [zoom, setZoom] = useState(100);
 
   return (
     <div className="h-full flex flex-col">
       {/* Preview Header */}
-      <div className="p-4 border-b flex items-center justify-between">
+      <div className="p-4 border-b flex items-center justify-between bg-background">
         <span className="text-sm font-medium">Предпросмотр</span>
         <div className="flex items-center gap-2">
           <Button
@@ -40,14 +41,15 @@ const ResumePreview = ({ data, template }: ResumePreviewProps) => {
       </div>
 
       {/* Preview Content */}
-      <div className="flex-1 overflow-auto p-4 bg-muted/30">
+      <div className="flex-1 overflow-auto p-8 bg-muted/30 flex items-start justify-center">
         <Card
-          className="mx-auto bg-white shadow-lg"
+          className="bg-white shadow-2xl"
           style={{
-            width: `${(210 * zoom) / 100}mm`,
-            minHeight: `${(297 * zoom) / 100}mm`,
+            width: "210mm",
+            minHeight: "297mm",
             transform: `scale(${zoom / 100})`,
-            transformOrigin: "top center"
+            transformOrigin: "top center",
+            marginBottom: `${zoom > 100 ? ((zoom - 100) * 2.97) : 0}mm`
           }}
         >
           <div className="p-8">
@@ -135,12 +137,14 @@ const ResumePreview = ({ data, template }: ResumePreviewProps) => {
       </div>
 
       {/* Preview Footer */}
-      <div className="p-4 border-t">
-        <Button className="w-full">
-          <Download className="w-4 h-4 mr-2" />
-          Скачать PDF
-        </Button>
-      </div>
+      {fullScreen && (
+        <div className="p-4 border-t bg-background">
+          <Button className="w-full" size="lg">
+            <Download className="w-4 h-4 mr-2" />
+            Скачать PDF
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
