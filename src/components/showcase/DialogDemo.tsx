@@ -14,7 +14,7 @@ export function DialogDemo() {
         </div>
         <button
           onClick={() => setIsOpen(true)}
-          className="px-6 py-3 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+          className="px-6 py-3 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300"
         >
           Open Dialog
         </button>
@@ -69,7 +69,7 @@ export function DialogDemo() {
                   </button>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="px-6 py-2 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200"
+                    className="px-6 py-2 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200"
                   >
                     Got it, thanks!
                   </button>

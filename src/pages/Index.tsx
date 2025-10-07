@@ -23,7 +23,7 @@ const Index = () => {
               Beautiful, accessible components built with React & Headless UI
             </p>
             <div className="flex gap-4 justify-center animate-fade-in" style={{ animationDelay: '200ms' }}>
-              <button className="px-8 py-3 bg-white text-primary font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200">
+              <button className="px-8 py-3 bg-white text-primary font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200">
                 Get Started
               </button>
               <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-200">

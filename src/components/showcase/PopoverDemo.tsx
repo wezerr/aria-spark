@@ -29,7 +29,7 @@ export function PopoverDemo() {
       </div>
 
       <Popover className="relative">
-        <PopoverButton className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] text-white rounded-lg font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200">
+        <PopoverButton className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-200">
           Features
           <ChevronDownIcon className="h-4 w-4" />
         </PopoverButton>
