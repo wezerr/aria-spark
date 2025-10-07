@@ -1,6 +1,7 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -49,7 +50,7 @@ export function ResumeCard({ resume, style }: ResumeCardProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const handleEdit = () => {
-    toast.success(`Открытие резюме "${resume.title}"...`);
+    // Navigation will be handled by Link component
   };
 
   const handleDownload = () => {
@@ -86,8 +87,8 @@ export function ResumeCard({ resume, style }: ResumeCardProps) {
       <Card
         className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer animate-fade-in overflow-hidden"
         style={style}
-        onClick={handleEdit}
       >
+        <Link to={`/resume/editor/${resume.id}`} className="block">
         {/* Preview/Thumbnail */}
         <div className="aspect-[3/4] bg-gradient-to-br from-muted to-muted/50 relative overflow-hidden border-b">
           <div className="absolute inset-0 flex items-center justify-center">
@@ -117,8 +118,7 @@ export function ResumeCard({ resume, style }: ResumeCardProps) {
               size="sm"
               variant="secondary"
               onClick={(e) => {
-                e.stopPropagation();
-                handleEdit();
+                e.preventDefault();
               }}
             >
               <Edit className="w-4 h-4 mr-1" />
@@ -128,6 +128,7 @@ export function ResumeCard({ resume, style }: ResumeCardProps) {
               size="sm"
               variant="secondary"
               onClick={(e) => {
+                e.preventDefault();
                 e.stopPropagation();
                 handleDownload();
               }}
@@ -146,6 +147,7 @@ export function ResumeCard({ resume, style }: ResumeCardProps) {
             </div>
           </div>
         </CardContent>
+        </Link>
 
         <CardFooter className="pt-0 pb-4 flex justify-end">
           <DropdownMenu>
@@ -155,9 +157,11 @@ export function ResumeCard({ resume, style }: ResumeCardProps) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={handleEdit}>
-                <Edit className="mr-2 h-4 w-4" />
-                Редактировать
+              <DropdownMenuItem asChild>
+                <Link to={`/resume/editor/${resume.id}`}>
+                  <Edit className="mr-2 h-4 w-4" />
+                  Редактировать
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={handleDownload}>
                 <Download className="mr-2 h-4 w-4" />

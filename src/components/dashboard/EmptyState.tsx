@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FileText, Sparkles, Zap, Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 export function EmptyState() {
@@ -51,14 +52,15 @@ export function EmptyState() {
 
         {/* CTA Button */}
         <div>
-          <Button
-            size="lg"
-            onClick={handleCreateResume}
-            className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
-          >
-            <Sparkles className="mr-2 h-5 w-5" />
-            Создать первое резюме
-          </Button>
+          <Link to="/resume/new">
+            <Button
+              size="lg"
+              className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all"
+            >
+              <Sparkles className="mr-2 h-5 w-5" />
+              Создать первое резюме
+            </Button>
+          </Link>
         </div>
 
         {/* Features */}

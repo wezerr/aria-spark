@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { ResumeCard } from "./ResumeCard";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 interface Resume {
@@ -32,10 +33,12 @@ export function ResumeGrid({ resumes }: ResumeGridProps) {
             У вас {resumes.length} {resumes.length === 1 ? "резюме" : "резюме"}
           </p>
         </div>
-        <Button onClick={handleCreateNew} size="lg" className="gap-2">
-          <Plus className="h-5 w-5" />
-          Создать новое
-        </Button>
+        <Link to="/resume/new">
+          <Button size="lg" className="gap-2">
+            <Plus className="h-5 w-5" />
+            Создать новое
+          </Button>
+        </Link>
       </div>
 
       {/* Grid */}
