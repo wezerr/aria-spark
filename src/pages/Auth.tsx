@@ -47,7 +47,7 @@ const Auth = () => {
               <div className="flex items-center justify-center gap-2 mb-4">
                 <Sparkles className="w-8 h-8 text-primary" />
                 <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Resume AI
+                  Rezume Expert
                 </span>
               </div>
               <CardTitle className="text-2xl">Добро пожаловать</CardTitle>

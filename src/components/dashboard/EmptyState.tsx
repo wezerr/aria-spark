@@ -43,7 +43,7 @@ export function EmptyState() {
         {/* Content */}
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tight">
-            Добро пожаловать в Resume AI
+            Добро пожаловать в Rezume Expert
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Создайте своё первое профессиональное резюме с помощью искусственного интеллекта

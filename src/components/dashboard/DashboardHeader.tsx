@@ -47,7 +47,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
           <Link to="/dashboard" className="flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-primary" />
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Resume AI
+              Rezume Expert
             </span>
           </Link>
 

@@ -52,7 +52,7 @@ export function FooterSection() {
           {/* Column 1 - Logo & Description */}
           <div className="space-y-4">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Resume AI
+              Rezume Expert
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
               Создавайте профессиональные резюме с помощью искусственного интеллекта
@@ -120,7 +120,7 @@ export function FooterSection() {
         <div className="pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/60 text-sm">
-              © 2025 Resume AI. Все права защищены.
+              © 2025 Rezume Expert. Все права защищены.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
