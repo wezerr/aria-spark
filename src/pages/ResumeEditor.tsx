@@ -45,9 +45,9 @@ const ResumeEditor = () => {
         onTogglePreview={() => setIsPreviewMode(!isPreviewMode)}
       />
 
-      <div className="h-[calc(100vh-90px)] md:h-[calc(100vh-64px)]">
+      <div className="h-[calc(100vh-90px)] lg:h-[calc(100vh-64px)]">
         {/* Мобильная версия - один экран с переключением */}
-        <div className="h-full md:hidden">
+        <div className="h-full lg:hidden">
           {isPreviewMode ? (
             <div className="h-full">
               <ResumePreview 
@@ -115,7 +115,7 @@ const ResumeEditor = () => {
         </div>
 
         {/* Десктопная версия - две панели рядом */}
-        <div className="h-full hidden md:block">
+        <div className="h-full hidden lg:block">
           <ResizablePanelGroup direction="horizontal">
             {/* Левая панель - редактирование */}
             <ResizablePanel defaultSize={40} minSize={30} maxSize={60}>
