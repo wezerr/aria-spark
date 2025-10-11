@@ -34,7 +34,7 @@ const EditorHeader = ({
   onTogglePreview,
 }: EditorHeaderProps) => {
   return (
-    <header className="h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+    <header className="h-16 sticky top-0 z-50 bg-gradient-to-r from-[hsl(var(--primary)_/_0.3)] to-[hsl(var(--primary-accent)_/_0.3)] backdrop-blur-lg border-b border-primary/20 transition-all duration-300 hover:from-[hsl(var(--primary)_/_0.7)] hover:to-[hsl(var(--primary-accent)_/_0.7)]">
       <div className="flex items-center justify-between h-full px-6">
         <div className="flex items-center gap-4">
           <Link to="/dashboard">
