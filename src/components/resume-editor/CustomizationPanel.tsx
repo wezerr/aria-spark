@@ -17,6 +17,7 @@ interface CustomizationPanelProps {
   onColorsChange: (colors: ResumeColors) => void;
   layout: string;
   onLayoutChange: (layout: string) => void;
+  activeTab?: "layout" | "colors";
 }
 
 const layouts = [
@@ -92,22 +93,13 @@ const CustomizationPanel = ({
   onColorsChange,
   layout,
   onLayoutChange,
+  activeTab = "layout",
 }: CustomizationPanelProps) => {
-  return (
-    <Card className="p-6">
-      <Tabs defaultValue="layout" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="layout">
-            <Layout className="w-4 h-4 mr-2" />
-            Макет
-          </TabsTrigger>
-          <TabsTrigger value="colors">
-            <Palette className="w-4 h-4 mr-2" />
-            Цвета
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="layout" className="space-y-4 mt-4">
+  // Если передан activeTab, показываем только нужный контент без вложенных табов
+  if (activeTab === "layout") {
+    return (
+      <Card className="p-6">
+        <div className="space-y-4">
           <div>
             <Label className="text-base mb-3 block">Выберите макет резюме</Label>
             <div className="grid grid-cols-2 gap-3">
@@ -133,9 +125,15 @@ const CustomizationPanel = ({
               ))}
             </div>
           </div>
-        </TabsContent>
+        </div>
+      </Card>
+    );
+  }
 
-        <TabsContent value="colors" className="space-y-4 mt-4">
+  if (activeTab === "colors") {
+    return (
+      <Card className="p-6">
+        <div className="space-y-4">
           <div>
             <Label className="text-base mb-3 block">Настройка цветов</Label>
             <div className="space-y-3">
@@ -167,10 +165,12 @@ const CustomizationPanel = ({
               />
             </div>
           </div>
-        </TabsContent>
-      </Tabs>
-    </Card>
-  );
+        </div>
+      </Card>
+    );
+  }
+
+  return null;
 };
 
 export default CustomizationPanel;

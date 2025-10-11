@@ -12,7 +12,7 @@ import CustomizationPanel from "@/components/resume-editor/CustomizationPanel";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { Plus, FileText, Palette } from "lucide-react";
+import { Plus, FileText, Layout, Palette } from "lucide-react";
 
 const ResumeEditor = () => {
   const { id } = useParams();
@@ -68,14 +68,18 @@ const ResumeEditor = () => {
               <ResizablePanel defaultSize={40} minSize={30} maxSize={60}>
                 <div className="h-full overflow-y-auto bg-muted/30 p-6">
                   <Tabs defaultValue="content" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 mb-6 max-w-md">
+                    <TabsList className="grid w-full grid-cols-3 mb-6">
                       <TabsTrigger value="content" className="gap-2">
                         <FileText className="w-4 h-4" />
                         Содержание
                       </TabsTrigger>
-                      <TabsTrigger value="design" className="gap-2">
+                      <TabsTrigger value="layout" className="gap-2">
+                        <Layout className="w-4 h-4" />
+                        Макет
+                      </TabsTrigger>
+                      <TabsTrigger value="colors" className="gap-2">
                         <Palette className="w-4 h-4" />
-                        Дизайн
+                        Цвета
                       </TabsTrigger>
                     </TabsList>
 
@@ -93,12 +97,23 @@ const ResumeEditor = () => {
                       </Button>
                     </TabsContent>
 
-                    <TabsContent value="design" className="mt-0">
+                    <TabsContent value="layout" className="mt-0">
                       <CustomizationPanel
                         colors={colors}
                         onColorsChange={setColors}
                         layout={layout}
                         onLayoutChange={setLayout}
+                        activeTab="layout"
+                      />
+                    </TabsContent>
+
+                    <TabsContent value="colors" className="mt-0">
+                      <CustomizationPanel
+                        colors={colors}
+                        onColorsChange={setColors}
+                        layout={layout}
+                        onLayoutChange={setLayout}
+                        activeTab="colors"
                       />
                     </TabsContent>
                   </Tabs>
