@@ -1,4 +1,4 @@
-import { ArrowLeft, Save, MoreVertical, Download } from "lucide-react";
+import { ArrowLeft, Save, MoreVertical, Download, Eye, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,11 +12,15 @@ import {
 interface EditorHeaderProps {
   title: string;
   onTitleChange: (title: string) => void;
+  isPreviewMode?: boolean;
+  onTogglePreview?: () => void;
 }
 
 const EditorHeader = ({
   title,
   onTitleChange,
+  isPreviewMode,
+  onTogglePreview,
 }: EditorHeaderProps) => {
   return (
     <header className="h-16 sticky top-0 z-50 bg-[hsl(var(--primary)_/_0.0)] backdrop-blur-lg border-b border-primary/10">
@@ -36,6 +40,26 @@ const EditorHeader = ({
         </div>
 
         <div className="flex items-center gap-3">
+          {onTogglePreview && (
+            <Button 
+              variant={isPreviewMode ? "default" : "ghost"} 
+              onClick={onTogglePreview}
+              className="md:hidden"
+            >
+              {isPreviewMode ? (
+                <>
+                  <Pencil className="w-4 h-4 mr-2" />
+                  Редактировать
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4 mr-2" />
+                  Предпросмотр
+                </>
+              )}
+            </Button>
+          )}
+
           <div className="flex items-center gap-2">
             <Button>
               <Save className="w-4 h-4 mr-2" />
