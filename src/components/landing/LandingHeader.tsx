@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export function LandingHeader() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-primary/10 backdrop-blur-lg border-b border-primary/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[hsl(var(--primary)_/_0.3)] backdrop-blur-lg border-b border-primary/20 transition-colors duration-300 hover:bg-[hsl(var(--primary)_/_0.7)]">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
