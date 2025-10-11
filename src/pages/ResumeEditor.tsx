@@ -61,7 +61,7 @@ const ResumeEditor = () => {
           ) : (
             <div className="h-full overflow-y-auto bg-background p-3">
               <Tabs defaultValue="content" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-4 sticky top-0 z-10 bg-background">
+                <TabsList className="grid w-full grid-cols-3 mb-4">
                   <TabsTrigger value="content" className="gap-1 text-xs sm:text-sm">
                     <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span className="hidden xs:inline">Содержание</span>
