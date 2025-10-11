@@ -122,10 +122,12 @@ const ResumePreview = ({
     </div>
   );
 
-  const renderModernLayout = () => (
+  const renderModernLayout = () => {
+    const accentBg = colors.accent + '15';
+    return (
     <div className="flex" style={{ backgroundColor: colors.background, color: colors.text }}>
       {/* Left sidebar with photo */}
-      <div className="w-1/3 p-6" style={{ backgroundColor: `${colors.accent}15` }}>
+      <div className="w-1/3 p-6 bg-primary/5"  style={{ borderRight: `1px solid ${colors.accent}20` }}>
         <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
           <img 
             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop" 
@@ -211,7 +213,8 @@ const ResumePreview = ({
         </div>
       </div>
     </div>
-  );
+    );
+  };
 
   const renderMinimalLayout = () => (
     <div className="p-8" style={{ backgroundColor: colors.background, color: colors.text }}>
@@ -284,7 +287,8 @@ const ResumePreview = ({
     </div>
   );
 
-  const renderSidebarLayout = () => (
+  const renderSidebarLayout = () => {
+    return (
     <div className="flex" style={{ backgroundColor: colors.background, color: colors.text }}>
       {/* Main content on left */}
       <div className="flex-1 p-8">
@@ -335,7 +339,7 @@ const ResumePreview = ({
       </div>
 
       {/* Right sidebar with photo */}
-      <div className="w-1/3 p-6" style={{ backgroundColor: `${colors.accent}15` }}>
+      <div className="w-1/3 p-6 bg-primary/5" style={{ borderLeft: `1px solid ${colors.accent}20` }}>
         <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
           <img 
             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop" 
@@ -373,7 +377,8 @@ const ResumePreview = ({
         </div>
       </div>
     </div>
-  );
+    );
+  };
 
   const renderLayout = () => {
     switch (layout) {
