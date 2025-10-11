@@ -79,7 +79,7 @@ const SkillsSection = ({ data, onChange }: SkillsSectionProps) => {
             );
           })}
 
-          <div className="flex gap-2 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 pt-2">
             <Button variant="outline" className="flex-1">
               <Plus className="w-4 h-4 mr-2" />
               Добавить категорию
