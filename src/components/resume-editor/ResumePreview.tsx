@@ -424,7 +424,7 @@ const ResumePreview = ({
       {/* Preview Content */}
       <div className="flex-1 overflow-auto bg-muted/30 flex items-start justify-center" style={{ padding: fullScreen && window.innerWidth < 1024 ? '8px' : '2rem' }}>
         <Card
-          className="shadow-2xl overflow-hidden"
+          className="shadow-2xl overflow-visible"
           style={{
             width: "210mm",
             minHeight: "297mm",
