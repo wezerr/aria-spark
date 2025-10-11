@@ -93,12 +93,15 @@ const ExperienceSection = ({ data, onChange }: ExperienceSectionProps) => {
             Добавить место работы
           </Button>
 
-          <div className="flex items-center gap-2 p-3 bg-muted/50 rounded-lg">
-            <Lightbulb className="w-5 h-5 text-primary" />
-            <span className="text-sm text-muted-foreground flex-1">Не знаете что написать?</span>
-            <Button variant="ghost" size="sm">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 p-3 bg-muted/50 rounded-lg">
+            <div className="flex items-center gap-2 flex-1">
+              <Lightbulb className="w-5 h-5 text-primary flex-shrink-0" />
+              <span className="text-sm text-muted-foreground">Не знаете что написать?</span>
+            </div>
+            <Button variant="ghost" size="sm" className="w-full sm:w-auto">
               <Sparkles className="w-4 h-4 mr-2" />
-              AI поможет описать ваш опыт
+              <span className="hidden xs:inline">AI поможет описать ваш опыт</span>
+              <span className="xs:hidden">AI описание</span>
             </Button>
           </div>
         </CollapsibleContent>
