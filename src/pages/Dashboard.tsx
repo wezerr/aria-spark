@@ -41,6 +41,7 @@ const Dashboard = () => {
 
   // Переключатель для демонстрации empty state
   const [hasResumes, setHasResumes] = useState(true);
+  const [hasDraft, setHasDraft] = useState(false);
 
   const resumes = hasResumes ? mockResumes : [];
 
@@ -50,19 +51,33 @@ const Dashboard = () => {
       
       <main className="container mx-auto px-4 py-8">
         {resumes.length === 0 ? (
-          <EmptyState />
+          <EmptyState 
+            hasDraft={hasDraft}
+            draftTitle="Frontend Developer"
+            draftUpdatedAt={new Date(Date.now() - 3 * 60 * 60 * 1000)}
+          />
         ) : (
           <ResumeGrid resumes={resumes} />
         )}
       </main>
 
       {/* Debug toggle - удалить в продакшене */}
-      <button
-        onClick={() => setHasResumes(!hasResumes)}
-        className="fixed bottom-4 right-4 px-4 py-2 bg-primary text-white rounded-lg text-sm shadow-lg"
-      >
-        Toggle Empty State
-      </button>
+      <div className="fixed bottom-4 right-4 flex flex-col gap-2">
+        <button
+          onClick={() => setHasResumes(!hasResumes)}
+          className="px-4 py-2 bg-primary text-white rounded-lg text-sm shadow-lg"
+        >
+          Toggle Resumes
+        </button>
+        {!hasResumes && (
+          <button
+            onClick={() => setHasDraft(!hasDraft)}
+            className="px-4 py-2 bg-secondary text-white rounded-lg text-sm shadow-lg"
+          >
+            Toggle Draft
+          </button>
+        )}
+      </div>
     </div>
   );
 };
