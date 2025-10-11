@@ -31,7 +31,7 @@ const ResumePreview = ({
   const [zoom, setZoom] = useState(100);
 
   const renderClassicLayout = () => (
-    <div className="p-8" style={{ backgroundColor: colors.background, color: colors.text }}>
+    <div className="p-8" style={{ backgroundColor: colors.background, color: colors.text, width: '210mm', minHeight: '297mm' }}>
       {/* Header with photo centered */}
       <div className="text-center mb-6 pb-6 border-b">
         <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
@@ -125,7 +125,7 @@ const ResumePreview = ({
   const renderModernLayout = () => {
     const accentBg = colors.accent + '15';
     return (
-    <div className="flex" style={{ backgroundColor: colors.background, color: colors.text }}>
+    <div className="flex" style={{ backgroundColor: colors.background, color: colors.text, width: '210mm', minHeight: '297mm' }}>
       {/* Left sidebar with photo */}
       <div className="w-1/3 p-6 bg-primary/5"  style={{ borderRight: `1px solid ${colors.accent}20` }}>
         <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 overflow-hidden">
@@ -217,7 +217,7 @@ const ResumePreview = ({
   };
 
   const renderMinimalLayout = () => (
-    <div className="p-8" style={{ backgroundColor: colors.background, color: colors.text }}>
+    <div className="p-8" style={{ backgroundColor: colors.background, color: colors.text, width: '210mm', minHeight: '297mm' }}>
       {/* Compact header without photo */}
       <div className="mb-6 pb-4 border-b">
         <h1 className="text-2xl font-bold mb-1" style={{ color: colors.heading }}>Иван Иванов</h1>
@@ -289,7 +289,7 @@ const ResumePreview = ({
 
   const renderSidebarLayout = () => {
     return (
-    <div className="flex" style={{ backgroundColor: colors.background, color: colors.text }}>
+    <div className="flex" style={{ backgroundColor: colors.background, color: colors.text, width: '210mm', minHeight: '297mm' }}>
       {/* Main content on left */}
       <div className="flex-1 p-8">
         <div className="mb-6">
