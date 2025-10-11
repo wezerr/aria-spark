@@ -424,14 +424,17 @@ const ResumePreview = ({
       {/* Preview Content */}
       <div className="flex-1 overflow-auto p-2 md:p-8 bg-muted/30 flex items-start justify-center">
         <Card
-          className="shadow-2xl overflow-hidden w-full md:w-auto"
+          className="shadow-2xl overflow-hidden"
           style={{
-            maxWidth: "100%",
-            width: window.innerWidth < 768 ? "100%" : "210mm",
-            minHeight: window.innerWidth < 768 ? "auto" : "297mm",
-            transform: window.innerWidth < 768 ? "scale(1)" : `scale(${zoom / 100})`,
+            width: "210mm",
+            minHeight: "297mm",
+            transform: fullScreen && window.innerWidth < 1024 
+              ? `scale(${Math.min(1, (window.innerWidth - 16) / 793)})` 
+              : `scale(${zoom / 100})`,
             transformOrigin: "top center",
-            marginBottom: `${zoom > 100 && window.innerWidth >= 768 ? ((zoom - 100) * 2.97) : 0}mm`
+            marginBottom: fullScreen && window.innerWidth < 1024 
+              ? "1rem" 
+              : `${zoom > 100 ? ((zoom - 100) * 2.97) : 0}mm`
           }}
         >
           {renderLayout()}
