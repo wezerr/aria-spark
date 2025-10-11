@@ -59,20 +59,20 @@ const ResumeEditor = () => {
               />
             </div>
           ) : (
-            <div className="h-full overflow-y-auto bg-background p-3">
+            <div className="h-full overflow-y-auto bg-background p-3 pb-20">
               <Tabs defaultValue="content" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-4">
-                  <TabsTrigger value="content" className="gap-1 text-xs sm:text-sm">
-                    <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span className="hidden xs:inline">Содержание</span>
+                <TabsList className="grid w-full grid-cols-3 fixed bottom-0 left-0 right-0 z-50 bg-background border-t h-16">
+                  <TabsTrigger value="content" className="gap-1 text-xs sm:text-sm flex-col h-full">
+                    <FileText className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span className="hidden xs:inline text-xs">Содержание</span>
                   </TabsTrigger>
-                  <TabsTrigger value="layout" className="gap-1 text-xs sm:text-sm">
-                    <Layout className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span className="hidden xs:inline">Макет</span>
+                  <TabsTrigger value="layout" className="gap-1 text-xs sm:text-sm flex-col h-full">
+                    <Layout className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span className="hidden xs:inline text-xs">Макет</span>
                   </TabsTrigger>
-                  <TabsTrigger value="colors" className="gap-1 text-xs sm:text-sm">
-                    <Palette className="w-3 h-3 sm:w-4 sm:h-4" />
-                    <span className="hidden xs:inline">Цвета</span>
+                  <TabsTrigger value="colors" className="gap-1 text-xs sm:text-sm flex-col h-full">
+                    <Palette className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span className="hidden xs:inline text-xs">Цвета</span>
                   </TabsTrigger>
                 </TabsList>
 
