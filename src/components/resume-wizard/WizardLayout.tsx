@@ -35,7 +35,7 @@ const WizardLayout = ({
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[hsl(var(--primary)_/_0.3)] to-[hsl(var(--primary-accent)_/_0.3)] backdrop-blur-lg border-b border-primary/20 transition-all duration-300 hover:from-[hsl(var(--primary)_/_0.7)] hover:to-[hsl(var(--primary-accent)_/_0.7)]">
+      <div className="bg-[hsl(var(--primary)_/_0.1)] backdrop-blur-lg border-b border-primary/10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
             <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground">
