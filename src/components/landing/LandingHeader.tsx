@@ -9,21 +9,21 @@ export function LandingHeader() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-primary" />
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <Sparkles className="w-6 h-6 text-white" />
+            <span className="text-xl font-bold text-white">
               Rezume Expert
             </span>
           </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <a href="#features" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
               Возможности
             </a>
-            <a href="#how-it-works" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <a href="#how-it-works" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
               Как работает
             </a>
-            <a href="#pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <a href="#pricing" className="text-sm font-medium text-white/90 hover:text-white transition-colors">
               Цены
             </a>
           </nav>
@@ -31,12 +31,12 @@ export function LandingHeader() {
           {/* Auth Buttons */}
           <div className="flex items-center gap-3">
             <Link to="/auth">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="text-white hover:text-white hover:bg-white/10">
                 Войти
               </Button>
             </Link>
             <Link to="/auth">
-              <Button size="sm">
+              <Button size="sm" className="bg-white text-primary hover:bg-white/90">
                 Создать резюме
               </Button>
             </Link>
