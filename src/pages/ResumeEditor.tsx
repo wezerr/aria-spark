@@ -89,14 +89,28 @@ const ResumeEditor = () => {
                   </Button>
                 </TabsContent>
 
-                <TabsContent value="design" className="mt-0">
-                  <div className="max-w-2xl mx-auto">
-                    <CustomizationPanel
-                      colors={colors}
-                      onColorsChange={setColors}
-                      layout={layout}
-                      onLayoutChange={setLayout}
-                    />
+                <TabsContent value="design" className="mt-0 h-[calc(100vh-180px)]">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+                    {/* Левая панель - настройки */}
+                    <div className="overflow-y-auto pr-2">
+                      <CustomizationPanel
+                        colors={colors}
+                        onColorsChange={setColors}
+                        layout={layout}
+                        onLayoutChange={setLayout}
+                      />
+                    </div>
+                    
+                    {/* Правая панель - превью */}
+                    <div className="hidden lg:block overflow-hidden rounded-lg border bg-background shadow-sm">
+                      <ResumePreview 
+                        data={resumeData} 
+                        template={selectedTemplate}
+                        layout={layout}
+                        colors={colors}
+                        fullScreen={false}
+                      />
+                    </div>
                   </div>
                 </TabsContent>
               </Tabs>
