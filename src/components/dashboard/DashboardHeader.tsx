@@ -40,7 +40,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[hsl(var(--primary)_/_0.1)] backdrop-blur-lg border-b border-primary/10">
+    <header className="sticky top-0 z-50 w-full bg-[hsl(var(--primary)_/_0.0)] backdrop-blur-lg border-b border-primary/10">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
