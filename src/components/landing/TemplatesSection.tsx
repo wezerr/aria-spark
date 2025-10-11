@@ -11,7 +11,7 @@ const templates = [
 
 export function TemplatesSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-primary to-secondary relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0wLTE0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0xNCAwYzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
 
@@ -69,7 +69,7 @@ export function TemplatesSection() {
 
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="px-6 py-3 bg-white text-[hsl(250,70%,62%)] rounded-lg font-semibold flex items-center gap-2 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                    <button className="px-6 py-3 bg-white text-primary rounded-lg font-semibold flex items-center gap-2 transform scale-95 group-hover:scale-100 transition-transform duration-300">
                       Использовать шаблон
                       <ArrowRight className="w-4 h-4" />
                     </button>

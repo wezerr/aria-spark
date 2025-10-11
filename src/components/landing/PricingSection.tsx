@@ -54,7 +54,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="py-24 bg-gradient-to-b from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] relative overflow-hidden">
+    <section id="pricing" className="py-24 bg-gradient-to-br from-primary to-secondary relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0wLTE0YzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00em0xNCAwYzAtMi4yMSAxLjc5LTQgNC00czQgMS43OSA0IDQtMS43OSA0LTQgNC00LTEuNzktNC00eiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
 
@@ -67,7 +67,7 @@ export function PricingSection() {
           
           {/* Billing Toggle */}
           <div className="inline-flex items-center gap-3 px-2 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
-            <button className="px-6 py-2 bg-white text-[hsl(250,70%,62%)] rounded-full font-medium transition-all duration-200">
+            <button className="px-6 py-2 bg-white text-primary rounded-full font-medium transition-all duration-200">
               Месяц
             </button>
             <button className="px-6 py-2 text-white rounded-full font-medium hover:bg-white/10 transition-all duration-200">
@@ -127,7 +127,7 @@ export function PricingSection() {
               <button
                 className={`w-full py-4 rounded-xl font-semibold transition-all duration-200 ${
                   plan.variant === 'solid'
-                    ? 'bg-white text-[hsl(250,70%,62%)] hover:bg-white/95 shadow-lg'
+                    ? 'bg-white text-primary hover:bg-white/95 shadow-lg'
                     : 'bg-white/10 text-white border-2 border-white/30 hover:bg-white/20'
                 }`}
               >

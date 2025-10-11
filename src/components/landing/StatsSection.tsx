@@ -36,13 +36,13 @@ export function StatsSection() {
             >
               {/* Icon */}
               <div className="flex justify-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] p-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary p-4 group-hover:scale-110 transition-transform duration-300">
                   <stat.icon className="w-full h-full text-white" />
                 </div>
               </div>
 
               {/* Number */}
-              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] bg-clip-text text-transparent">
+              <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 {stat.number}
               </div>
 

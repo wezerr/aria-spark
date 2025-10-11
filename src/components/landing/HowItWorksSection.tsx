@@ -38,7 +38,7 @@ export function HowItWorksSection() {
         {/* Steps */}
         <div className="relative">
           {/* Connecting Line */}
-          <div className="hidden lg:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-[hsl(250,70%,62%)] via-purple-400 to-[hsl(280,60%,55%)]" style={{ top: '120px', left: '16%', right: '16%' }}></div>
+          <div className="hidden lg:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-light to-secondary" style={{ top: '120px', left: '16%', right: '16%' }}></div>
 
           <div className="grid md:grid-cols-3 gap-12 relative">
             {steps.map((step, index) => (
@@ -50,14 +50,14 @@ export function HowItWorksSection() {
                 {/* Card */}
                 <div className="bg-card rounded-2xl p-8 shadow-lg border border-border hover:shadow-2xl transition-all duration-300 relative z-10">
                   {/* Number Badge */}
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] flex items-center justify-center shadow-xl">
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-xl">
                     <span className="text-3xl font-bold text-white">{step.number}</span>
                   </div>
 
                   {/* Icon */}
                   <div className="flex justify-center mb-6">
                     <div className="w-16 h-16 rounded-xl bg-muted/50 flex items-center justify-center">
-                      <step.icon className="w-8 h-8 text-[hsl(250,70%,62%)]" />
+                      <step.icon className="w-8 h-8 text-primary" />
                     </div>
                   </div>
 

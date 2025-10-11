@@ -23,9 +23,9 @@ const footerLinks = {
 
 export function FooterSection() {
   return (
-    <footer className="bg-[hsl(220,30%,12%)] text-white">
+    <footer className="bg-slate-900 text-white">
       {/* Final CTA Section */}
-      <div className="relative py-20 bg-gradient-to-r from-[hsl(250,70%,62%)] to-[hsl(280,60%,55%)] overflow-hidden">
+      <div className="relative py-20 bg-gradient-to-r from-primary to-secondary overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6bTAtMTRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6bTE0IDBjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43OS00LTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
         
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
@@ -36,7 +36,7 @@ export function FooterSection() {
             Присоединяйтесь к тысячам успешных профессионалов
           </p>
           <div className="space-y-3">
-            <button className="px-10 py-5 bg-white text-[hsl(250,70%,62%)] rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+            <button className="px-10 py-5 bg-white text-primary rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
               Создать резюме бесплатно
             </button>
             <p className="text-sm text-white/70">
@@ -51,7 +51,7 @@ export function FooterSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Column 1 - Logo & Description */}
           <div className="space-y-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <div className="text-2xl font-bold bg-gradient-to-r from-primary-light to-secondary-light bg-clip-text text-transparent">
               Rezume Expert
             </div>
             <p className="text-white/60 text-sm leading-relaxed">
