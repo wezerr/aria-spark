@@ -429,7 +429,7 @@ const ResumePreview = ({
             width: "210mm",
             minHeight: "297mm",
             transform: fullScreen && window.innerWidth < 1024 
-              ? `scale(${(window.innerWidth - 32) / 793})` 
+              ? `scale(${(window.innerWidth - 48) / 793})` 
               : `scale(${zoom / 100})`,
             transformOrigin: "top center",
             marginBottom: "1rem"
