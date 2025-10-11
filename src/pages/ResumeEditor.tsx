@@ -17,8 +17,6 @@ import { Plus, FileText, Layout, Palette } from "lucide-react";
 const ResumeEditor = () => {
   const { id } = useParams();
   const [resumeTitle, setResumeTitle] = useState("Новое резюме");
-  const [selectedTemplate, setSelectedTemplate] = useState("modern");
-  const [isPreviewMode, setIsPreviewMode] = useState(false);
   const [layout, setLayout] = useState("classic");
   const [colors, setColors] = useState({
     background: "#ffffff",
@@ -42,27 +40,10 @@ const ResumeEditor = () => {
       <EditorHeader
         title={resumeTitle}
         onTitleChange={setResumeTitle}
-        selectedTemplate={selectedTemplate}
-        onTemplateChange={setSelectedTemplate}
-        isPreviewMode={isPreviewMode}
-        onTogglePreview={() => setIsPreviewMode(!isPreviewMode)}
       />
 
       <div className="h-[calc(100vh-64px)]">
-        {isPreviewMode ? (
-          /* Режим предпросмотра */
-          <div className="h-full bg-muted/30">
-            <ResumePreview 
-              data={resumeData} 
-              template={selectedTemplate} 
-              layout={layout}
-              colors={colors}
-              fullScreen 
-            />
-          </div>
-        ) : (
-          /* Режим редактирования */
-          <div className="h-full">
+        <div className="h-full">
             <ResizablePanelGroup direction="horizontal">
               {/* Левая панель - редактирование */}
               <ResizablePanel defaultSize={40} minSize={30} maxSize={60}>
@@ -127,7 +108,7 @@ const ResumeEditor = () => {
                 <div className="h-full">
                   <ResumePreview 
                     data={resumeData} 
-                    template={selectedTemplate}
+                    template="modern"
                     layout={layout}
                     colors={colors}
                     fullScreen={false}
@@ -135,8 +116,7 @@ const ResumeEditor = () => {
                 </div>
               </ResizablePanel>
             </ResizablePanelGroup>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
