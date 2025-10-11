@@ -11,6 +11,7 @@ import ResumePreview from "@/components/resume-editor/ResumePreview";
 import CustomizationPanel from "@/components/resume-editor/CustomizationPanel";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Plus, FileText, Palette } from "lucide-react";
 
 const ResumeEditor = () => {
@@ -61,60 +62,64 @@ const ResumeEditor = () => {
           </div>
         ) : (
           /* Режим редактирования */
-          <div className="h-full overflow-y-auto bg-muted/30">
-            <div className="max-w-4xl mx-auto p-6">
-              <Tabs defaultValue="content" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-6 max-w-md mx-auto">
-                  <TabsTrigger value="content" className="gap-2">
-                    <FileText className="w-4 h-4" />
-                    Содержание
-                  </TabsTrigger>
-                  <TabsTrigger value="design" className="gap-2">
-                    <Palette className="w-4 h-4" />
-                    Дизайн
-                  </TabsTrigger>
-                </TabsList>
+          <div className="h-full">
+            <ResizablePanelGroup direction="horizontal">
+              {/* Левая панель - редактирование */}
+              <ResizablePanel defaultSize={40} minSize={30} maxSize={60}>
+                <div className="h-full overflow-y-auto bg-muted/30 p-6">
+                  <Tabs defaultValue="content" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2 mb-6 max-w-md">
+                      <TabsTrigger value="content" className="gap-2">
+                        <FileText className="w-4 h-4" />
+                        Содержание
+                      </TabsTrigger>
+                      <TabsTrigger value="design" className="gap-2">
+                        <Palette className="w-4 h-4" />
+                        Дизайн
+                      </TabsTrigger>
+                    </TabsList>
 
-                <TabsContent value="content" className="space-y-4 mt-0">
-                  <PersonalInfoSection data={resumeData.personalInfo} onChange={(data) => setResumeData({...resumeData, personalInfo: data})} />
-                  <ExperienceSection data={resumeData.experience} onChange={(data) => setResumeData({...resumeData, experience: data})} />
-                  <EducationSection data={resumeData.education} onChange={(data) => setResumeData({...resumeData, education: data})} />
-                  <SkillsSection data={resumeData.skills} onChange={(data) => setResumeData({...resumeData, skills: data})} />
-                  <LanguagesSection data={resumeData.languages} onChange={(data) => setResumeData({...resumeData, languages: data})} />
-                  <ProjectsSection data={resumeData.projects} onChange={(data) => setResumeData({...resumeData, projects: data})} />
-                  
-                  <Button variant="outline" className="w-full">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Добавить секцию
-                  </Button>
-                </TabsContent>
+                    <TabsContent value="content" className="space-y-4 mt-0">
+                      <PersonalInfoSection data={resumeData.personalInfo} onChange={(data) => setResumeData({...resumeData, personalInfo: data})} />
+                      <ExperienceSection data={resumeData.experience} onChange={(data) => setResumeData({...resumeData, experience: data})} />
+                      <EducationSection data={resumeData.education} onChange={(data) => setResumeData({...resumeData, education: data})} />
+                      <SkillsSection data={resumeData.skills} onChange={(data) => setResumeData({...resumeData, skills: data})} />
+                      <LanguagesSection data={resumeData.languages} onChange={(data) => setResumeData({...resumeData, languages: data})} />
+                      <ProjectsSection data={resumeData.projects} onChange={(data) => setResumeData({...resumeData, projects: data})} />
+                      
+                      <Button variant="outline" className="w-full">
+                        <Plus className="w-4 h-4 mr-2" />
+                        Добавить секцию
+                      </Button>
+                    </TabsContent>
 
-                <TabsContent value="design" className="mt-0 h-[calc(100vh-180px)]">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
-                    {/* Левая панель - настройки */}
-                    <div className="overflow-y-auto pr-2">
+                    <TabsContent value="design" className="mt-0">
                       <CustomizationPanel
                         colors={colors}
                         onColorsChange={setColors}
                         layout={layout}
                         onLayoutChange={setLayout}
                       />
-                    </div>
-                    
-                    {/* Правая панель - превью */}
-                    <div className="hidden lg:block overflow-hidden rounded-lg border bg-background shadow-sm">
-                      <ResumePreview 
-                        data={resumeData} 
-                        template={selectedTemplate}
-                        layout={layout}
-                        colors={colors}
-                        fullScreen={false}
-                      />
-                    </div>
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
+                    </TabsContent>
+                  </Tabs>
+                </div>
+              </ResizablePanel>
+
+              <ResizableHandle withHandle />
+
+              {/* Правая панель - превью */}
+              <ResizablePanel defaultSize={60} minSize={40}>
+                <div className="h-full">
+                  <ResumePreview 
+                    data={resumeData} 
+                    template={selectedTemplate}
+                    layout={layout}
+                    colors={colors}
+                    fullScreen={false}
+                  />
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
           </div>
         )}
       </div>
