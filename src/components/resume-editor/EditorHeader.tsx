@@ -39,28 +39,29 @@ const EditorHeader = ({
           />
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           {onTogglePreview && (
             <Button 
-              variant={isPreviewMode ? "default" : "ghost"} 
+              variant={isPreviewMode ? "default" : "outline"} 
               onClick={onTogglePreview}
               className="md:hidden"
+              size="sm"
             >
               {isPreviewMode ? (
                 <>
-                  <Pencil className="w-4 h-4 mr-2" />
-                  Редактировать
+                  <Pencil className="w-4 h-4 md:mr-2" />
+                  <span className="hidden xs:inline ml-2">Редактировать</span>
                 </>
               ) : (
                 <>
-                  <Eye className="w-4 h-4 mr-2" />
-                  Предпросмотр
+                  <Eye className="w-4 h-4 md:mr-2" />
+                  <span className="hidden xs:inline ml-2">Предпросмотр</span>
                 </>
               )}
             </Button>
           )}
 
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <Button>
               <Save className="w-4 h-4 mr-2" />
               Сохранить

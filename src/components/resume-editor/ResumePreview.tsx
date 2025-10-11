@@ -395,8 +395,8 @@ const ResumePreview = ({
 
   return (
     <div className="h-full flex flex-col">
-      {/* Preview Header */}
-      <div className="p-4 border-b flex items-center justify-between bg-background">
+      {/* Preview Header - только на десктопе */}
+      <div className="hidden md:flex p-4 border-b items-center justify-between bg-background">
         <span className="text-sm font-medium">Предпросмотр</span>
         <div className="flex items-center gap-2">
           <Button
@@ -422,30 +422,21 @@ const ResumePreview = ({
       </div>
 
       {/* Preview Content */}
-      <div className="flex-1 overflow-auto p-8 bg-muted/30 flex items-start justify-center">
+      <div className="flex-1 overflow-auto p-2 md:p-8 bg-muted/30 flex items-start justify-center">
         <Card
-          className="shadow-2xl overflow-hidden"
+          className="shadow-2xl overflow-hidden w-full md:w-auto"
           style={{
-            width: "210mm",
-            minHeight: "297mm",
-            transform: `scale(${zoom / 100})`,
+            maxWidth: "100%",
+            width: window.innerWidth < 768 ? "100%" : "210mm",
+            minHeight: window.innerWidth < 768 ? "auto" : "297mm",
+            transform: window.innerWidth < 768 ? "scale(1)" : `scale(${zoom / 100})`,
             transformOrigin: "top center",
-            marginBottom: `${zoom > 100 ? ((zoom - 100) * 2.97) : 0}mm`
+            marginBottom: `${zoom > 100 && window.innerWidth >= 768 ? ((zoom - 100) * 2.97) : 0}mm`
           }}
         >
           {renderLayout()}
         </Card>
       </div>
-
-      {/* Preview Footer */}
-      {fullScreen && (
-        <div className="p-4 border-t bg-background">
-          <Button className="w-full" size="lg">
-            <Download className="w-4 h-4 mr-2" />
-            Скачать PDF
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

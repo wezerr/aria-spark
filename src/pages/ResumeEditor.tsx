@@ -49,7 +49,7 @@ const ResumeEditor = () => {
         {/* Мобильная версия - один экран с переключением */}
         <div className="h-full md:hidden">
           {isPreviewMode ? (
-            <div className="h-full bg-muted/30">
+            <div className="h-full">
               <ResumePreview 
                 data={resumeData} 
                 template="modern"
@@ -59,20 +59,20 @@ const ResumeEditor = () => {
               />
             </div>
           ) : (
-            <div className="h-full overflow-y-auto bg-muted/30 p-4">
+            <div className="h-full overflow-y-auto bg-background p-3">
               <Tabs defaultValue="content" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
-                  <TabsTrigger value="content" className="gap-2">
-                    <FileText className="w-4 h-4" />
-                    Содержание
+                <TabsList className="grid w-full grid-cols-3 mb-4 sticky top-0 z-10 bg-background">
+                  <TabsTrigger value="content" className="gap-1 text-xs sm:text-sm">
+                    <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden xs:inline">Содержание</span>
                   </TabsTrigger>
-                  <TabsTrigger value="layout" className="gap-2">
-                    <Layout className="w-4 h-4" />
-                    Макет
+                  <TabsTrigger value="layout" className="gap-1 text-xs sm:text-sm">
+                    <Layout className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden xs:inline">Макет</span>
                   </TabsTrigger>
-                  <TabsTrigger value="colors" className="gap-2">
-                    <Palette className="w-4 h-4" />
-                    Цвета
+                  <TabsTrigger value="colors" className="gap-1 text-xs sm:text-sm">
+                    <Palette className="w-3 h-3 sm:w-4 sm:h-4" />
+                    <span className="hidden xs:inline">Цвета</span>
                   </TabsTrigger>
                 </TabsList>
 
