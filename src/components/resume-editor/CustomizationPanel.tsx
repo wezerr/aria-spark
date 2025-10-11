@@ -142,6 +142,7 @@ const CustomizationPanel = ({
               <ColorPicker
                 label="Цвет фона"
                 value={colors.background}
+                type="background"
                 onChange={(background) =>
                   onColorsChange({ ...colors, background })
                 }
@@ -149,16 +150,19 @@ const CustomizationPanel = ({
               <ColorPicker
                 label="Цвет текста"
                 value={colors.text}
+                type="text"
                 onChange={(text) => onColorsChange({ ...colors, text })}
               />
               <ColorPicker
                 label="Цвет заголовков"
                 value={colors.heading}
+                type="heading"
                 onChange={(heading) => onColorsChange({ ...colors, heading })}
               />
               <ColorPicker
                 label="Акцентный цвет"
                 value={colors.accent}
+                type="accent"
                 onChange={(accent) => onColorsChange({ ...colors, accent })}
               />
             </div>
