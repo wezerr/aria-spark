@@ -45,7 +45,7 @@ const ResumeEditor = () => {
         onTogglePreview={() => setIsPreviewMode(!isPreviewMode)}
       />
 
-      <div className="h-[calc(100vh-64px)]">
+      <div className="h-[calc(100vh-90px)] md:h-[calc(100vh-64px)]">
         {/* Мобильная версия - один экран с переключением */}
         <div className="h-full md:hidden">
           {isPreviewMode ? (

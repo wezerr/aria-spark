@@ -23,8 +23,8 @@ const EditorHeader = ({
   onTogglePreview,
 }: EditorHeaderProps) => {
   return (
-    <header className="h-16 sticky top-0 z-50 bg-[hsl(var(--primary)_/_0.0)] backdrop-blur-lg border-b border-primary/10">
-      <div className="flex items-center justify-between h-full px-6">
+    <header className="sticky top-0 z-50 bg-[hsl(var(--primary)_/_0.0)] backdrop-blur-lg border-b border-primary/10">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between h-auto md:h-16 px-4 md:px-6 py-3 md:py-0 gap-3 md:gap-0">
         <div className="flex items-center gap-4">
           <Link to="/dashboard">
             <Button variant="ghost" size="icon">
@@ -35,43 +35,43 @@ const EditorHeader = ({
           <Input
             value={title}
             onChange={(e) => onTitleChange(e.target.value)}
-            className="max-w-xs border-none focus-visible:ring-0 font-semibold text-lg"
+            className="max-w-xs border-none focus-visible:ring-0 font-semibold text-base md:text-lg"
           />
         </div>
 
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 md:gap-3 w-full md:w-auto">
           {onTogglePreview && (
             <Button 
               variant={isPreviewMode ? "default" : "outline"} 
               onClick={onTogglePreview}
-              className="md:hidden"
+              className="md:hidden w-full xs:w-auto"
               size="sm"
             >
               {isPreviewMode ? (
                 <>
-                  <Pencil className="w-4 h-4 md:mr-2" />
-                  <span className="hidden xs:inline ml-2">Редактировать</span>
+                  <Pencil className="w-4 h-4 mr-2" />
+                  Редактировать
                 </>
               ) : (
                 <>
-                  <Eye className="w-4 h-4 md:mr-2" />
-                  <span className="hidden xs:inline ml-2">Предпросмотр</span>
+                  <Eye className="w-4 h-4 mr-2" />
+                  Предпросмотр
                 </>
               )}
             </Button>
           )}
 
-          <div className="hidden md:flex items-center gap-2">
-            <Button>
+          <div className="flex items-center gap-2 w-full xs:w-auto">
+            <Button className="flex-1 xs:flex-none">
               <Save className="w-4 h-4 mr-2" />
               Сохранить
             </Button>
-            <span className="text-xs text-muted-foreground">Сохранено</span>
+            <span className="hidden md:inline text-xs text-muted-foreground">Сохранено</span>
           </div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hidden xs:flex">
                 <MoreVertical className="w-4 h-4" />
               </Button>
             </DropdownMenuTrigger>
