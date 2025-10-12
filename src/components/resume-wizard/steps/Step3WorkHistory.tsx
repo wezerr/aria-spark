@@ -58,26 +58,13 @@ const Step3WorkHistory = ({ data, onChange }: Step3WorkHistoryProps) => {
     });
   };
 
-  // Sort work history by date (newest first)
-  const sortedWorkHistory = [...data.workHistory].sort((a, b) => {
-    if (!a.dateFrom) return 1;
-    if (!b.dateFrom) return -1;
-    
-    // Parse date format (assuming MM/YYYY or similar)
-    const dateA = new Date(a.dateFrom);
-    const dateB = new Date(b.dateFrom);
-    
-    // Sort descending (newest first)
-    return dateB.getTime() - dateA.getTime();
-  });
-
   return (
     <div className="space-y-6">
       <p className="text-sm text-muted-foreground">
         Укажите места работы и период занятости
       </p>
 
-      {sortedWorkHistory.map((entry, index) => (
+      {data.workHistory.map((entry, index) => (
         <div key={entry.id} className="space-y-4 p-4 border rounded-lg">
           <div className="flex justify-between items-center">
             <span className="text-sm font-medium">Место работы #{index + 1}</span>
