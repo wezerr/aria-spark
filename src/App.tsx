@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import ResumeNew from "./pages/ResumeNew";
 import ResumeEditor from "./pages/ResumeEditor";
 import ResumeWizard from "./pages/ResumeWizard";
+import ResumeView from "./pages/ResumeView";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/resume/new" element={<ResumeNew />} />
           <Route path="/resume/wizard" element={<ResumeWizard />} />
           <Route path="/resume/editor/:id" element={<ResumeEditor />} />
+          <Route path="/resume/view/:id" element={<ResumeView />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
