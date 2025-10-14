@@ -1,4 +1,4 @@
-import { Camera, Sparkles } from "lucide-react";
+import { Camera, Sparkles, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -32,6 +32,10 @@ const PersonalInfoSection = ({ data, onChange }: PersonalInfoSectionProps) => {
     }
   };
 
+  const handlePhotoRemove = () => {
+    onChange({ ...data, photo: null });
+  };
+
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <Card className="p-6">
@@ -43,28 +47,40 @@ const PersonalInfoSection = ({ data, onChange }: PersonalInfoSectionProps) => {
         <CollapsibleContent className="space-y-4">
           {/* Фото */}
           <div className="flex justify-center mb-6">
-            <label className="cursor-pointer">
-              <input 
-                type="file" 
-                accept="image/*" 
-                className="hidden" 
-                onChange={handlePhotoChange}
-              />
-              <div className="w-32 h-32 rounded-full border-2 border-dashed border-muted-foreground/25 flex items-center justify-center hover:border-primary transition-colors overflow-hidden">
-                {data?.photo ? (
-                  <img 
-                    src={data.photo} 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="text-center">
-                    <Camera className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-                    <span className="text-xs text-muted-foreground">Добавить фото</span>
-                  </div>
-                )}
-              </div>
-            </label>
+            <div className="relative group">
+              <label className="cursor-pointer">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  className="hidden" 
+                  onChange={handlePhotoChange}
+                />
+                <div className="w-32 h-32 rounded-full border-2 border-dashed border-muted-foreground/25 flex items-center justify-center hover:border-primary transition-colors overflow-hidden">
+                  {data?.photo ? (
+                    <img 
+                      src={data.photo} 
+                      alt="Profile" 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <Camera className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                      <span className="text-xs text-muted-foreground">Добавить фото</span>
+                    </div>
+                  )}
+                </div>
+              </label>
+              {data?.photo && (
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  className="absolute -top-2 -right-2 h-8 w-8 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={handlePhotoRemove}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
           </div>
 
           {/* Имя и Фамилия */}
