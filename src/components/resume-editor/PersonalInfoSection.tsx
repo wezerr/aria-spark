@@ -21,6 +21,17 @@ const PersonalInfoSection = ({ data, onChange }: PersonalInfoSectionProps) => {
   const [isOpen, setIsOpen] = useState(true);
   const [charCount, setCharCount] = useState(0);
 
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        onChange({ ...data, photo: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <Card className="p-6">
@@ -32,12 +43,28 @@ const PersonalInfoSection = ({ data, onChange }: PersonalInfoSectionProps) => {
         <CollapsibleContent className="space-y-4">
           {/* Фото */}
           <div className="flex justify-center mb-6">
-            <div className="w-32 h-32 rounded-full border-2 border-dashed border-muted-foreground/25 flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
-              <div className="text-center">
-                <Camera className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-                <span className="text-xs text-muted-foreground">Добавить фото</span>
+            <label className="cursor-pointer">
+              <input 
+                type="file" 
+                accept="image/*" 
+                className="hidden" 
+                onChange={handlePhotoChange}
+              />
+              <div className="w-32 h-32 rounded-full border-2 border-dashed border-muted-foreground/25 flex items-center justify-center hover:border-primary transition-colors overflow-hidden">
+                {data?.photo ? (
+                  <img 
+                    src={data.photo} 
+                    alt="Profile" 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <Camera className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground">Добавить фото</span>
+                  </div>
+                )}
               </div>
-            </div>
+            </label>
           </div>
 
           {/* Имя и Фамилия */}
