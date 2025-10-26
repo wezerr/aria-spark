@@ -1,8 +1,10 @@
 import { Link, useParams } from "react-router-dom";
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, ThumbsUp, ThumbsDown, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 
 // Временные данные для статей (должны быть синхронизированы с Blog.tsx)
 const blogPosts = [
@@ -231,6 +233,65 @@ const blogPosts = [
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const post = blogPosts.find(p => p.id === Number(id));
+  
+  const [likes, setLikes] = useState(42);
+  const [dislikes, setDislikes] = useState(3);
+  const [userVote, setUserVote] = useState<'like' | 'dislike' | null>(null);
+  const [commentText, setCommentText] = useState("");
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      author: "Иван Петров",
+      date: "2025-01-20",
+      text: "Отличная статья! Очень информативно и понятно написано.",
+    },
+    {
+      id: 2,
+      author: "Мария Смирнова",
+      date: "2025-01-21",
+      text: "Спасибо за советы, очень помогло при составлении резюме.",
+    },
+  ]);
+
+  const handleLike = () => {
+    if (userVote === 'like') {
+      setLikes(likes - 1);
+      setUserVote(null);
+    } else {
+      setLikes(likes + 1);
+      if (userVote === 'dislike') {
+        setDislikes(dislikes - 1);
+      }
+      setUserVote('like');
+    }
+  };
+
+  const handleDislike = () => {
+    if (userVote === 'dislike') {
+      setDislikes(dislikes - 1);
+      setUserVote(null);
+    } else {
+      setDislikes(dislikes + 1);
+      if (userVote === 'like') {
+        setLikes(likes - 1);
+      }
+      setUserVote('dislike');
+    }
+  };
+
+  const handleSubmitComment = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (commentText.trim()) {
+      const newComment = {
+        id: comments.length + 1,
+        author: "Гость",
+        date: new Date().toISOString().split('T')[0],
+        text: commentText,
+      };
+      setComments([...comments, newComment]);
+      setCommentText("");
+    }
+  };
 
   if (!post) {
     return (
@@ -335,6 +396,77 @@ const BlogPost = () => {
               prose-li:mb-2"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          {/* Likes/Dislikes Section */}
+          <div className="mt-12 pt-8 border-t border-border">
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground">Была ли статья полезной?</span>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant={userVote === 'like' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={handleLike}
+                  className="gap-2"
+                >
+                  <ThumbsUp className="h-4 w-4" />
+                  {likes}
+                </Button>
+                <Button
+                  variant={userVote === 'dislike' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={handleDislike}
+                  className="gap-2"
+                >
+                  <ThumbsDown className="h-4 w-4" />
+                  {dislikes}
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Comments Section */}
+          <div className="mt-12 pt-8 border-t border-border">
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+              <MessageCircle className="h-6 w-6" />
+              Комментарии ({comments.length})
+            </h3>
+
+            {/* Comment Form */}
+            <form onSubmit={handleSubmitComment} className="mb-8">
+              <Textarea
+                placeholder="Напишите ваш комментарий..."
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+                className="mb-4"
+                rows={4}
+              />
+              <Button type="submit">Отправить комментарий</Button>
+            </form>
+
+            {/* Comments List */}
+            <div className="space-y-6">
+              {comments.map((comment) => (
+                <div key={comment.id} className="bg-muted/50 rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <span className="text-sm font-semibold text-primary">
+                        {comment.author.charAt(0)}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground">{comment.author}</p>
+                      <p className="text-sm text-muted-foreground">{new Date(comment.date).toLocaleDateString('ru-RU', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}</p>
+                    </div>
+                  </div>
+                  <p className="text-foreground">{comment.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </article>
 
