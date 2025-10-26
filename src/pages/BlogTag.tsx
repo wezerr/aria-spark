@@ -3,6 +3,16 @@ import { Calendar, Clock, ArrowRight, ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
+import { useState } from "react";
 
 // Временные данные для статей (должны быть синхронизированы с Blog.tsx)
 const blogPosts = [
@@ -62,13 +72,21 @@ const blogPosts = [
   }
 ];
 
+const POSTS_PER_PAGE = 6;
+
 const BlogTag = () => {
   const { tag } = useParams<{ tag: string }>();
+  const [currentPage, setCurrentPage] = useState(1);
   
   // Фильтруем статьи по тэгу
   const filteredPosts = blogPosts.filter(
     post => post.category.toLowerCase() === tag?.toLowerCase()
   );
+  
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const currentPosts = filteredPosts.slice(startIndex, endIndex);
 
   return (
     <div className="min-h-screen bg-background">
@@ -119,8 +137,9 @@ const BlogTag = () => {
       <section className="pb-20 px-4">
         <div className="container mx-auto max-w-7xl">
           {filteredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPosts.map((post) => (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {currentPosts.map((post) => (
                 <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
                   <div className="relative h-48 overflow-hidden">
                     <img 
@@ -159,8 +178,57 @@ const BlogTag = () => {
                     </Link>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+                ))}
+              </div>
+              
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious 
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                      />
+                    </PaginationItem>
+                    
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                      if (
+                        page === 1 ||
+                        page === totalPages ||
+                        (page >= currentPage - 1 && page <= currentPage + 1)
+                      ) {
+                        return (
+                          <PaginationItem key={page}>
+                            <PaginationLink
+                              onClick={() => setCurrentPage(page)}
+                              isActive={currentPage === page}
+                              className="cursor-pointer"
+                            >
+                              {page}
+                            </PaginationLink>
+                          </PaginationItem>
+                        );
+                      } else if (page === currentPage - 2 || page === currentPage + 2) {
+                        return (
+                          <PaginationItem key={page}>
+                            <PaginationEllipsis />
+                          </PaginationItem>
+                        );
+                      }
+                      return null;
+                    })}
+                    
+                    <PaginationItem>
+                      <PaginationNext 
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              )}
+            </>
           ) : (
             <div className="text-center py-20">
               <p className="text-xl text-muted-foreground">
