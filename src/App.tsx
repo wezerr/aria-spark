@@ -12,6 +12,7 @@ import ResumeWizard from "./pages/ResumeWizard";
 import ResumeView from "./pages/ResumeView";
 import Blog from "./pages/Blog";
 import BlogTag from "./pages/BlogTag";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/resume/view/:id" element={<ResumeView />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/tag/:tag" element={<BlogTag />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
