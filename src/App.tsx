@@ -13,6 +13,7 @@ import ResumeView from "./pages/ResumeView";
 import Blog from "./pages/Blog";
 import BlogTag from "./pages/BlogTag";
 import BlogPost from "./pages/BlogPost";
+import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/tag/:tag" element={<BlogTag />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/admin/secret" element={<AdminPanel />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
