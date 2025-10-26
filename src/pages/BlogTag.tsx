@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { Calendar, Clock, ArrowRight, ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-// Временные данные для статей
+// Временные данные для статей (должны быть синхронизированы с Blog.tsx)
 const blogPosts = [
   {
     id: 1,
@@ -62,7 +62,14 @@ const blogPosts = [
   }
 ];
 
-const Blog = () => {
+const BlogTag = () => {
+  const { tag } = useParams<{ tag: string }>();
+  
+  // Фильтруем статьи по тэгу
+  const filteredPosts = blogPosts.filter(
+    post => post.category.toLowerCase() === tag?.toLowerCase()
+  );
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -73,6 +80,9 @@ const Blog = () => {
               ResumeBuilder
             </Link>
             <nav className="flex items-center gap-4">
+              <Link to="/blog">
+                <Button variant="ghost">Блог</Button>
+              </Link>
               <Link to="/dashboard">
                 <Button variant="ghost">Мои резюме</Button>
               </Link>
@@ -86,12 +96,21 @@ const Blog = () => {
 
       {/* Hero Section */}
       <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl text-center">
+        <div className="container mx-auto max-w-4xl">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+            Назад к блогу
+          </Link>
+          <div className="flex items-center gap-3 mb-4">
+            <Badge className="text-lg px-4 py-2">
+              {tag}
+            </Badge>
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Блог о карьере
+            Статьи по теме: {tag}
           </h1>
           <p className="text-lg text-muted-foreground">
-            Полезные советы, инструкции и лучшие практики для создания эффективного резюме
+            {filteredPosts.length} {filteredPosts.length === 1 ? 'статья' : 'статей'}
           </p>
         </div>
       </section>
@@ -99,54 +118,66 @@ const Blog = () => {
       {/* Blog Posts Grid */}
       <section className="pb-20 px-4">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <Link to={`/blog/tag/${post.category}`}>
-                    <Badge className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm hover:bg-primary cursor-pointer transition-colors">
+          {filteredPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post) => (
+                <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <Badge className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm">
                       {post.category}
                     </Badge>
-                  </Link>
-                </div>
-                <CardHeader>
-                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </CardTitle>
-                  <CardDescription className="line-clamp-2">
-                    {post.excerpt}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{new Date(post.date).toLocaleDateString('ru-RU')}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{post.readTime}</span>
-                    </div>
                   </div>
-                  <Link to={`/blog/${post.id}`}>
-                    <Button variant="ghost" className="w-full group/btn">
-                      Читать далее
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <CardHeader>
+                    <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-2">
+                      {post.excerpt}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{new Date(post.date).toLocaleDateString('ru-RU')}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+                    <Link to={`/blog/${post.id}`}>
+                      <Button variant="ghost" className="w-full group/btn">
+                        Читать далее
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <p className="text-xl text-muted-foreground">
+                Статей с тэгом "{tag}" не найдено
+              </p>
+              <Link to="/blog" className="mt-6 inline-block">
+                <Button>
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Вернуться к блогу
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </div>
   );
 };
 
-export default Blog;
+export default BlogTag;
