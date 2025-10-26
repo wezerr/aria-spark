@@ -72,7 +72,7 @@ const blogPosts = [
   }
 ];
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 3;
 
 const BlogTag = () => {
   const { tag } = useParams<{ tag: string }>();

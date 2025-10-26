@@ -72,7 +72,7 @@ const blogPosts = [
   }
 ];
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 3;
 
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
