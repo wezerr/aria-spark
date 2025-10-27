@@ -64,20 +64,20 @@ const ResumeNew = () => {
 
             <Card className="p-6 hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
               <Dialog>
-                <DialogTrigger asChild>
-                  <div className="text-center">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                      <Upload className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">Импортировать</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Загрузите существующее резюме в PDF или DOCX
-                    </p>
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Upload className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Импортировать</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Загрузите существующее резюме в PDF или DOCX
+                  </p>
+                  <DialogTrigger asChild>
                     <Button className="w-full" variant="secondary">
                       Выбрать файл
                     </Button>
-                  </div>
-                </DialogTrigger>
+                  </DialogTrigger>
+                </div>
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Импорт резюме</DialogTitle>
